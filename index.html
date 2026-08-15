@@ -8,6 +8,8 @@
         body {
             background: #000;
             margin: 0;
+            justify-content: center;
+            align-items: center;
         }
         #close-iframe {
             position: fixed;
@@ -26,13 +28,18 @@
             border-radius: 30vw;
             font-size: clamp(0vw, 4cqw, 75vw);
             background-color: #0099FF;
-            
+            transition: transform 0.3s ease-in-out;
         }
 
         #confirml {
             font-size: 2vw;
             color: #FFFFFF;
         }
+
+        #interesting:hovered {
+            transform: scale(1.33);
+        }
+        
     </style>
 </head>
 
