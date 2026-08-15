@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bad site</title>
+    <title>Special offer</title>
     <style>
         body {
             background: #000;
@@ -19,6 +19,20 @@
             opacity: 0.05; 
             pointer-events: none;
         }
+        #interesting {
+            height: 20vw;
+            width: 40vw;
+            border: none;
+            border-radius: 30vw;
+            font-size: clamp(0vw, 4cqw, 75vw);
+            background-color: #0099FF;
+            
+        }
+
+        #confirml {
+            font-size: 2vw;
+            color: #FFFFFF;
+        }
     </style>
 </head>
 
@@ -27,15 +41,15 @@
     <iframe id="close-iframe" 
         sandbox="allow-forms allow-modals allow-scripts allow-same-origin">
     </iframe>
-    <label>
+    <label id="confirml">
         <input type="checkbox" id="confirm">
-        I agree to pressing this button
+        I agree (joke site, it doesn't fr gives free robux)
     </label>
 
     <br><br>
 
     <button id="interesting" disabled>
-        Don't press this button
+        Free robux
     </button>
 
 
